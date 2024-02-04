@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ElegantApp</string>
+
+    <string name="topappbar_app_name">3legant</string>
+
+
+    <string name="product_description">The title is %s</string>
+    <string name="new_on_product">NEW</string>
+    <string name="discount_on_product">-%s%</string>
+</resources>
