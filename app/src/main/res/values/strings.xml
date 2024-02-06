@@ -6,5 +6,7 @@
 
     <string name="product_description">The title is %s</string>
     <string name="new_on_product">NEW</string>
-    <string name="discount_on_product">-%s%</string>
+    <string name="discount_on_product">-%1$d</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="added_to_cart">Added</string>
 </resources>

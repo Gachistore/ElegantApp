@@ -52,3 +52,8 @@ val OutlineDark = Color(0xFFb3b3b3)
 
 val FilledStarColor = Color(0xFF343839)
 val OutlinedStarColor = Color(0xFF343839)
+val ProductCardTitle = Color(0xFF141718)
+val ProductCardPrice = Color(0xFF121212)
+val ProductCardPreviousPrice = Color(0xFF6C7275)
+val ProductCardAddToCartTitle = Color(0xFFFEFEFE)
+val ProductCardAddToCartButton = Color(0xFF141718)
