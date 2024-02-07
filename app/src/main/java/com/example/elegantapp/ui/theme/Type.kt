@@ -10,6 +10,7 @@ import com.example.elegantapp.R
 
 val Popins = FontFamily(
     Font(R.font.poppins, FontWeight.Normal),
+    Font(R.font.poppins_semibold, FontWeight.SemiBold)
 )
 
 val Inter = FontFamily(

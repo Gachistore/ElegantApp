@@ -57,3 +57,5 @@ val ProductCardPrice = Color(0xFF121212)
 val ProductCardPreviousPrice = Color(0xFF6C7275)
 val ProductCardAddToCartTitle = Color(0xFFFEFEFE)
 val ProductCardAddToCartButton = Color(0xFF141718)
+
+val FooterColor = Color(0xFF141718)
