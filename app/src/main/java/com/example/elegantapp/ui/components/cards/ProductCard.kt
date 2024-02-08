@@ -233,7 +233,7 @@ fun ProductCard(data: ProductCardData, modifier: Modifier = Modifier) {
 
 @Preview()
 @Composable
-fun ProductCardPreview1() {
+private fun ProductCardPreview1() {
     ElegantAppTheme {
         var data = ProductCardData(
             image = R.drawable.test_sofa,
@@ -254,7 +254,7 @@ fun ProductCardPreview1() {
 
 @Preview()
 @Composable
-fun ProductCardPreview2() {
+private fun ProductCardPreview2() {
     ElegantAppTheme {
         var data = ProductCardData(
             image = R.drawable.test_sofa,
@@ -275,7 +275,7 @@ fun ProductCardPreview2() {
 
 @Preview()
 @Composable
-fun ProductCardPreview3() {
+private fun ProductCardPreview3() {
     ElegantAppTheme {
         var data = ProductCardData(
             image = R.drawable.test_sofa,
@@ -296,7 +296,7 @@ fun ProductCardPreview3() {
 
 @Preview()
 @Composable
-fun ProductCardPreview4() {
+private fun ProductCardPreview4() {
     ElegantAppTheme {
         var data = ProductCardData(
             image = R.drawable.test_sofa,
@@ -317,7 +317,7 @@ fun ProductCardPreview4() {
 
 @Preview()
 @Composable
-fun ProductCardPreview5() {
+private fun ProductCardPreview5() {
     ElegantAppTheme {
         var data = ProductCardData(
             image = R.drawable.test_sofa,

@@ -32,7 +32,7 @@ fun ElegantTopAppBar(modifier: Modifier = Modifier) {
         ),
         title = {
             Text(
-                text = stringResource(id = R.string.topappbar_app_name),
+                text = stringResource(id = R.string.three_legant),
                 style = TextStyle(
                     fontSize = 16.sp,
                     fontFamily = Popins,
@@ -61,7 +61,7 @@ fun ElegantTopAppBar(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-fun ElegantTopAppBarPreview() {
+private fun ElegantTopAppBarPreview() {
     ElegantAppTheme {
         ElegantTopAppBar()
     }

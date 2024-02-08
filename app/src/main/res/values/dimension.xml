@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="home_page_start_padding">32.dp</dimen>
+    <dimen name="home_page_end_padding">32.dp</dimen>
+    <dimen name="introduction_bottom_padding">40.dp</dimen>
+    <dimen name="home_page_product_category_card_padding">32.dp</dimen>
+</resources>

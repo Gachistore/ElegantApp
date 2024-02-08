@@ -1,7 +1,6 @@
 package com.example.elegantapp.ui.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -46,172 +44,174 @@ fun Footer(
             .background(FooterColor)
             .wrapContentHeight(),
     ) {
-        Column {
-            Column(
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = stringResource(id = R.string.topappbar_app_name),
-                    fontFamily = Popins,
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 24.sp,
-                    textAlign = TextAlign.Center,
-                    color = Color.White,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(Modifier.height(16.dp))
-                Divider(
-                    modifier = Modifier.width(24.dp),
-                    thickness = 1.dp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                Spacer(Modifier.height(16.dp))
-                Text(
-                    text = stringResource(id = R.string.gift_and_decoration_store),
-                    fontFamily = Inter,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 14.sp,
-                    textAlign = TextAlign.Center,
-                    color = Color.White
-                )
-            }
-            Spacer(Modifier.height(40.dp))
-            Column(
-                verticalArrangement = Arrangement.spacedBy(32.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = stringResource(id = R.string.home),
-                    fontFamily = Inter,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 14.sp,
-                    textAlign = TextAlign.Center,
-                    color = Color.White,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Text(
-                    text = stringResource(id = R.string.shop),
-                    fontFamily = Inter,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 14.sp,
-                    textAlign = TextAlign.Center,
-                    color = Color.White
-                )
-                Text(
-                    text = stringResource(id = R.string.product),
-                    fontFamily = Inter,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 14.sp,
-                    textAlign = TextAlign.Center,
-                    color = Color.White
-                )
-                Text(
-                    text = stringResource(id = R.string.blog),
-                    fontFamily = Inter,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 14.sp,
-                    textAlign = TextAlign.Center,
-                    color = Color.White
-                )
-                Text(
-                    text = stringResource(id = R.string.contact_us),
-                    fontFamily = Inter,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 14.sp,
-                    textAlign = TextAlign.Center,
-                    color = Color.White
-                )
-            }
-        }
-        Spacer(Modifier.height(40.dp))
-        Divider(
-            modifier = Modifier.fillMaxWidth(),
-            thickness = 1.dp,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
         Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Spacer(Modifier.height(24.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Spacer(Modifier.weight(1f))
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(10.dp),
-                    modifier = Modifier.wrapContentWidth()
-                ) {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_instagram_outlined),
-                            contentDescription = null,
-                            tint = Color.White
-                        )
-                    }
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_facebook_outlined),
-                            contentDescription = null,
-                            tint = Color.White
-                        )
-                    }
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_youtube_outlined),
-                            contentDescription = null,
-                            tint = Color.White
-                        )
-                    }
-                }
-                Spacer(Modifier.weight(1f))
-            }
-            Spacer(Modifier.height(24.dp))
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(28.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = stringResource(id = R.string.privacy_policy),
-                    fontFamily = Popins,
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center,
-                    color = Color.White
-                )
-                Text(
-                    text = stringResource(id = R.string.terns_of_use),
-                    fontFamily = Popins,
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center,
-                    color = Color.White
-                )
-            }
-            Spacer(Modifier.height(28.dp))
-            Text(
-                text = stringResource(id = R.string.copyright),
-                fontFamily = Popins,
-                fontWeight = FontWeight.Normal,
-                fontSize = 11.sp,
-                textAlign = TextAlign.Center,
-                color = Color.White,
-            )
-        }
-    }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFF141718)
-@Composable
-fun FooterPreview() {
-    ElegantAppTheme {
-        Footer(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(
                     horizontal = 48.dp, vertical = 36.dp
                 )
-        )
+        ) {
+            Column {
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.three_legant),
+                        fontFamily = Popins,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 24.sp,
+                        textAlign = TextAlign.Center,
+                        color = Color.White,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(Modifier.height(16.dp))
+                    Divider(
+                        modifier = Modifier.width(24.dp),
+                        thickness = 1.dp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(Modifier.height(16.dp))
+                    Text(
+                        text = stringResource(id = R.string.gift_and_decoration_store),
+                        fontFamily = Inter,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 14.sp,
+                        textAlign = TextAlign.Center,
+                        color = Color.White
+                    )
+                }
+                Spacer(Modifier.height(40.dp))
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(32.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.home),
+                        fontFamily = Inter,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 14.sp,
+                        textAlign = TextAlign.Center,
+                        color = Color.White,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Text(
+                        text = stringResource(id = R.string.shop),
+                        fontFamily = Inter,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 14.sp,
+                        textAlign = TextAlign.Center,
+                        color = Color.White
+                    )
+                    Text(
+                        text = stringResource(id = R.string.product),
+                        fontFamily = Inter,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 14.sp,
+                        textAlign = TextAlign.Center,
+                        color = Color.White
+                    )
+                    Text(
+                        text = stringResource(id = R.string.blog),
+                        fontFamily = Inter,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 14.sp,
+                        textAlign = TextAlign.Center,
+                        color = Color.White
+                    )
+                    Text(
+                        text = stringResource(id = R.string.contact_us),
+                        fontFamily = Inter,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 14.sp,
+                        textAlign = TextAlign.Center,
+                        color = Color.White
+                    )
+                }
+            }
+            Spacer(Modifier.height(40.dp))
+            Divider(
+                modifier = Modifier.fillMaxWidth(),
+                thickness = 1.dp,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Spacer(Modifier.height(24.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Spacer(Modifier.weight(1f))
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        modifier = Modifier.wrapContentWidth()
+                    ) {
+                        IconButton(onClick = { /*TODO*/ }) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_instagram_outlined),
+                                contentDescription = null,
+                                tint = Color.White
+                            )
+                        }
+                        IconButton(onClick = { /*TODO*/ }) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_facebook_outlined),
+                                contentDescription = null,
+                                tint = Color.White
+                            )
+                        }
+                        IconButton(onClick = { /*TODO*/ }) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_youtube_outlined),
+                                contentDescription = null,
+                                tint = Color.White
+                            )
+                        }
+                    }
+                    Spacer(Modifier.weight(1f))
+                }
+                Spacer(Modifier.height(24.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(28.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.privacy_policy),
+                        fontFamily = Popins,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center,
+                        color = Color.White
+                    )
+                    Text(
+                        text = stringResource(id = R.string.terns_of_use),
+                        fontFamily = Popins,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center,
+                        color = Color.White
+                    )
+                }
+                Spacer(Modifier.height(28.dp))
+                Text(
+                    text = stringResource(id = R.string.copyright),
+                    fontFamily = Popins,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 11.sp,
+                    textAlign = TextAlign.Center,
+                    color = Color.White,
+                )
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun FooterPreview() {
+    ElegantAppTheme {
+        Footer()
     }
 }

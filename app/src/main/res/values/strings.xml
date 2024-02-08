@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">ElegantApp</string>
 
-    <string name="topappbar_app_name">3legant</string>
-
+    <string name="three_legant">3legant</string>
 
     <string name="product_description">The title is %s</string>
     <string name="new_on_product">NEW</string>
@@ -10,13 +9,21 @@
     <string name="add_to_cart">Add to cart</string>
     <string name="added_to_cart">Added</string>
     <string name="gift_and_decoration_store">Gift &amp; Decoration Store</string>
-    
+
+    <!-- Footer -->
     <string name="home">Home</string>
     <string name="shop">Shop</string>
     <string name="product">Product</string>
     <string name="blog">Blog</string>
     <string name="contact_us">Contact Us</string>
-    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_policy">Privacy</string>
     <string name="terns_of_use">Terns of Use</string>
     <string name="copyright">Copyright © 2023 HomeDecor. All rights reserved</string>
+    <string name="introduction_sofa_content_description">Photo of the sofa on the home page introduction</string>
+
+    <string name="shop_now">Shop Now</string>
+
+    <string name="living_room">Living Room</string>
+    <string name="bedroom">Bedroom</string>
+    <string name="kitchen">Kitchen</string>
 </resources>
