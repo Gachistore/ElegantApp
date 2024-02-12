@@ -22,8 +22,19 @@
     <string name="introduction_sofa_content_description">Photo of the sofa on the home page introduction</string>
 
     <string name="shop_now">Shop Now</string>
+    <string name="more_products">More Products</string>
+    <string name="new_arrivals">New \nArrivals</string>
 
     <string name="living_room">Living Room</string>
     <string name="bedroom">Bedroom</string>
     <string name="kitchen">Kitchen</string>
+    
+    <string name="free_shipping">Free Shipping</string>
+    <string name="free_shipping_description">Order \nabove $200</string>
+    <string name="money_back">Money-back</string>
+    <string name="money_back_description">30 days \nguarantee</string>
+    <string name="secure_payments">Secure Payments</string>
+    <string name="secure_payments_description">Secured \nby Stripe</string>
+    <string name="allday_support">24/7 Support</string>
+    <string name="allday_support_description">Phone and \nEmail support</string>
 </resources>

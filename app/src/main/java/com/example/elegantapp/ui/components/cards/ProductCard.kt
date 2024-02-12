@@ -60,10 +60,10 @@ fun ProductCard(data: ProductCardData, modifier: Modifier = Modifier) {
         modifier = modifier
     ) {
         Column {
-            Box (
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(349.dp)
+                    .height(308.dp)
             ) {
                 Image(
                     painter = painterResource(id = data.image),
@@ -76,15 +76,15 @@ fun ProductCard(data: ProductCardData, modifier: Modifier = Modifier) {
                         .fillMaxSize()
                         .padding(16.dp)
                 ) {
-                    Row{
-                        Column  {
-                            if(data.isNew) {
-                                Card (
+                    Row {
+                        Column {
+                            if (data.isNew) {
+                                Card(
                                     modifier = Modifier
                                         .size(width = 67.dp, height = 24.dp)
                                         .align(Alignment.CenterHorizontally),
                                     shape = RoundedCornerShape(4.dp)
-                                ){
+                                ) {
                                     Text(
                                         text = stringResource(id = R.string.new_on_product),
                                         textAlign = TextAlign.Center,
@@ -98,8 +98,8 @@ fun ProductCard(data: ProductCardData, modifier: Modifier = Modifier) {
                                 }
                                 Spacer(Modifier.height(8.dp))
                             }
-                            if(data.discount > 0) {
-                                Card (
+                            if (data.discount > 0) {
+                                Card(
                                     modifier = Modifier
                                         .size(width = 71.dp, height = 24.dp)
                                         .align(Alignment.CenterHorizontally),
@@ -107,9 +107,14 @@ fun ProductCard(data: ProductCardData, modifier: Modifier = Modifier) {
                                     colors = CardDefaults.cardColors(
                                         containerColor = Secondary
                                     )
-                                ){
+                                ) {
                                     Text(
-                                        text = "${stringResource(R.string.discount_on_product, data.discount)}%",
+                                        text = "${
+                                            stringResource(
+                                                R.string.discount_on_product,
+                                                data.discount
+                                            )
+                                        }%",
                                         textAlign = TextAlign.Center,
                                         fontFamily = Inter,
                                         fontWeight = FontWeight.Bold,
@@ -132,19 +137,19 @@ fun ProductCard(data: ProductCardData, modifier: Modifier = Modifier) {
                                     .fillMaxSize()
                                     .background(color = Color.White)
                                     .align(Alignment.CenterHorizontally),
-                                onClick = { data.isLiked = !data.isLiked }
+                                onClick = { data.copy(isLiked = !data.isLiked) }
                             ) {
-                                if(!data.isLiked) {
+                                if (!data.isLiked) {
                                     Icon(
                                         imageVector = Icons.Outlined.FavoriteBorder,
                                         contentDescription = null
                                     )
-                                } else (
-                                        Icon (
-                                            imageVector = Icons.Filled.Favorite,
-                                            contentDescription = null
-                                        )
-                                        )
+                                } else {
+                                    Icon(
+                                        imageVector = Icons.Filled.Favorite,
+                                        contentDescription = null
+                                    )
+                                }
                             }
                         }
                     }
@@ -188,7 +193,7 @@ fun ProductCard(data: ProductCardData, modifier: Modifier = Modifier) {
                             )
                         }
                         repeat(5 - data.rating) {
-                            Icon (
+                            Icon(
                                 imageVector = Icons.Outlined.StarOutline,
                                 contentDescription = null,
                                 tint = OutlinedStarColor,
@@ -216,7 +221,8 @@ fun ProductCard(data: ProductCardData, modifier: Modifier = Modifier) {
                         Spacer(Modifier.width(12.dp))
                         if (data.previousPrice > data.price) {
                             Text(
-                                text = NumberFormat.getCurrencyInstance().format(data.previousPrice),
+                                text = NumberFormat.getCurrencyInstance()
+                                    .format(data.previousPrice),
                                 textDecoration = TextDecoration.LineThrough,
                                 fontSize = 14.sp,
                                 fontFamily = Inter,
@@ -245,9 +251,10 @@ private fun ProductCardPreview1() {
             price = 199,
             previousPrice = 400
         )
-        ProductCard(data, modifier = Modifier
-            .width(262.dp)
-            .height(430.dp)
+        ProductCard(
+            data, modifier = Modifier
+                .width(262.dp)
+                .height(430.dp)
         )
     }
 }
@@ -266,9 +273,10 @@ private fun ProductCardPreview2() {
             price = 199,
             previousPrice = 400
         )
-        ProductCard(data, modifier = Modifier
-            .width(262.dp)
-            .height(430.dp)
+        ProductCard(
+            data, modifier = Modifier
+                .width(231.dp)
+                .height(392.dp)
         )
     }
 }
@@ -287,9 +295,10 @@ private fun ProductCardPreview3() {
             price = 199,
             previousPrice = 400
         )
-        ProductCard(data, modifier = Modifier
-            .width(262.dp)
-            .height(430.dp)
+        ProductCard(
+            data, modifier = Modifier
+                .width(262.dp)
+                .height(430.dp)
         )
     }
 }
@@ -308,9 +317,10 @@ private fun ProductCardPreview4() {
             price = 199,
             previousPrice = 400
         )
-        ProductCard(data, modifier = Modifier
-            .width(262.dp)
-            .height(430.dp)
+        ProductCard(
+            data, modifier = Modifier
+                .width(262.dp)
+                .height(430.dp)
         )
     }
 }
@@ -329,9 +339,10 @@ private fun ProductCardPreview5() {
             price = 199,
             previousPrice = 100
         )
-        ProductCard(data, modifier = Modifier
-            .width(262.dp)
-            .height(430.dp)
+        ProductCard(
+            data, modifier = Modifier
+                .width(262.dp)
+                .height(430.dp)
         )
     }
 }

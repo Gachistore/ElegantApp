@@ -4,4 +4,11 @@
     <dimen name="home_page_end_padding">32.dp</dimen>
     <dimen name="introduction_bottom_padding">40.dp</dimen>
     <dimen name="home_page_product_category_card_padding">32.dp</dimen>
+    <dimen name="default_32_padding">32.dp</dimen>
+    <dimen name="default_24_padding">24.dp</dimen>
+    <dimen name="default_16_padding">16.dp</dimen>
+    <dimen name="default_8_padding">8.dp</dimen>
+
+    <dimen name="benefit_content_vertical_padding">30.dp</dimen>
+    <dimen name="benefit_content_horizontal_padding">16.dp</dimen>
 </resources>
