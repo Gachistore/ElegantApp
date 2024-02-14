@@ -1,6 +1,7 @@
 package com.example.elegantapp.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -93,7 +94,7 @@ fun Footer(
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
                         color = Color.White,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth().clickable { /* TODO */ }
                     )
                     Text(
                         text = stringResource(id = R.string.shop),
@@ -101,7 +102,8 @@ fun Footer(
                         fontWeight = FontWeight.Normal,
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = Color.White,
+                        modifier = Modifier.fillMaxWidth().clickable { /* TODO */ }
                     )
                     Text(
                         text = stringResource(id = R.string.product),
@@ -109,7 +111,8 @@ fun Footer(
                         fontWeight = FontWeight.Normal,
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = Color.White,
+                        modifier = Modifier.fillMaxWidth().clickable { /* TODO */ }
                     )
                     Text(
                         text = stringResource(id = R.string.blog),
@@ -117,7 +120,8 @@ fun Footer(
                         fontWeight = FontWeight.Normal,
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = Color.White,
+                        modifier = Modifier.fillMaxWidth().clickable { /* TODO */ }
                     )
                     Text(
                         text = stringResource(id = R.string.contact_us),
@@ -125,7 +129,8 @@ fun Footer(
                         fontWeight = FontWeight.Normal,
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = Color.White,
+                        modifier = Modifier.fillMaxWidth().clickable { /* TODO */ }
                     )
                 }
             }
@@ -183,7 +188,8 @@ fun Footer(
                         fontWeight = FontWeight.SemiBold,
                         fontSize = 12.sp,
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = Color.White,
+                        modifier = Modifier.clickable { /* TODO */ }
                     )
                     Text(
                         text = stringResource(id = R.string.terns_of_use),
@@ -191,7 +197,8 @@ fun Footer(
                         fontWeight = FontWeight.SemiBold,
                         fontSize = 12.sp,
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = Color.White,
+                        modifier = Modifier.clickable { /* TODO */ }
                     )
                 }
                 Spacer(Modifier.height(28.dp))
