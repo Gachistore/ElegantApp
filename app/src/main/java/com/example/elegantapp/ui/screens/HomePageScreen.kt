@@ -17,17 +17,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Mail
 import androidx.compose.material.icons.rounded.ArrowForward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -42,6 +50,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -59,8 +71,14 @@ import com.example.elegantapp.ui.components.cards.ProductCard
 import com.example.elegantapp.ui.theme.ElegantAppTheme
 import com.example.elegantapp.ui.theme.FooterColor
 import com.example.elegantapp.ui.theme.Inter
-import com.example.elegantapp.ui.theme.Popins
+import com.example.elegantapp.ui.theme.Poppins
 import com.example.elegantapp.ui.components.cards.BenefitOfElegantGrayCard
+import com.example.elegantapp.ui.theme.JoinOurNewsDescriptionColor
+import com.example.elegantapp.ui.theme.JoinOurNewsTitleColor
+import com.example.elegantapp.ui.theme.JoinOurNewsBackgroundColor
+import com.example.elegantapp.ui.theme.JoinOurNewsEmailAddressColor
+import com.example.elegantapp.ui.theme.JoinOurNewsMailIconColor
+import com.example.elegantapp.ui.theme.JoinOurNewsSignupColor
 import com.example.elegantapp.ui.theme.LinkButtonWithArrowColor
 import com.example.elegantapp.ui.theme.SalesUpSaleBackgroundColor
 import com.example.elegantapp.ui.theme.SalesUpSaleColor
@@ -116,6 +134,11 @@ fun HomePageScreen() {
                     horizontal = dimensionResource(R.dimen.default_32_padding)
                 )
         )
+        JoinOurNes(
+            modifier = Modifier
+                .fillMaxWidth()
+        )
+
 
         Footer()
     }
@@ -154,7 +177,7 @@ private fun Introduction(
                     append(".")
                 }
             },
-            fontFamily = Popins,
+            fontFamily = Poppins,
             fontWeight = FontWeight.SemiBold,
             fontSize = 37.sp,
             lineHeight = 41.sp,
@@ -226,7 +249,7 @@ private fun NewArrivals(
         ) {
             Text(
                 text = stringResource(R.string.new_arrivals),
-                fontFamily = Popins,
+                fontFamily = Poppins,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 33.sp,
                 lineHeight = 35.sp,
@@ -302,9 +325,9 @@ private fun Benefits(
 private fun SalesUp(
     modifier: Modifier = Modifier
 ) {
-    Column (
+    Column(
         modifier = modifier.background(SalesUpSaleBackgroundColor)
-    ){
+    ) {
         Image(
             painter = painterResource(R.drawable.sales_sofa),
             contentDescription = stringResource(R.string.sales_image_content_description),
@@ -332,7 +355,7 @@ private fun SalesUp(
                 Text(
                     text = "HUNDREDS of \n" +
                             "New lower prices!",
-                    fontFamily = Popins,
+                    fontFamily = Poppins,
                     fontWeight = FontWeight.W600,
                     fontSize = 32.sp,
                     lineHeight = 36.sp,
@@ -371,7 +394,7 @@ private fun Articles(
         ) {
             Text(
                 text = stringResource(R.string.articles),
-                fontFamily = Popins,
+                fontFamily = Poppins,
                 fontWeight = FontWeight.W500,
                 fontSize = 32.sp,
                 lineHeight = 36.sp,
@@ -398,6 +421,87 @@ private fun Articles(
                     articleData = it,
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun JoinOurNes(
+    modifier: Modifier = Modifier
+) {
+    var text by rememberSaveable {
+        mutableStateOf("")
+    }
+    Column(
+        modifier = modifier.background(color = JoinOurNewsBackgroundColor)
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(
+                vertical = 95.dp,
+                horizontal = dimensionResource(R.dimen.default_32_padding)
+            )
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = stringResource(R.string.join_out_newsletter),
+                    fontFamily = Poppins,
+                    fontWeight = FontWeight.W600,
+                    fontSize = 28.sp,
+                    lineHeight = 32.sp,
+                    color = JoinOurNewsTitleColor,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(Modifier.height(dimensionResource(R.dimen.default_8_padding)))
+                Text(
+                    text = stringResource(R.string.sign_up_for_details),
+                    fontFamily = Inter,
+                    fontWeight = FontWeight.W400,
+                    fontSize = 14.sp,
+                    lineHeight = 20.sp,
+                    color = JoinOurNewsDescriptionColor,
+                    textAlign = TextAlign.Center
+                )
+            }
+            Spacer(Modifier.height(dimensionResource(R.dimen.default_32_padding)))
+            OutlinedTextField(
+                value = text,
+                onValueChange = { text = it },
+                label = {
+                    Text(
+                        text = stringResource(R.string.email_address),
+                        fontFamily = Inter,
+                        fontWeight = FontWeight.W500,
+                        fontSize = 15.sp,
+                        color = JoinOurNewsEmailAddressColor
+                    )
+                },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Email,
+                    imeAction = ImeAction.Done
+                ),
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Outlined.Mail,
+                        contentDescription = null,
+                        tint = JoinOurNewsMailIconColor
+                    )
+                },
+                trailingIcon = {
+                    TextButton(onClick = { text = "" }) {
+                        Text(
+                            text = stringResource(R.string.signup),
+                            fontFamily = Inter,
+                            fontWeight = FontWeight.W500,
+                            fontSize = 15.sp,
+                            color = JoinOurNewsSignupColor
+                        )
+                    }
+                },
+                shape = RoundedCornerShape(7.dp)
+            )
         }
     }
 }

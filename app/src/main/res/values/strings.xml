@@ -43,4 +43,9 @@
 
     <string name="sales_image_content_description">Sales image</string>
     <string name="sale_up_to_text">SALES UP TO %s OFF</string>
+    
+    <string name="join_out_newsletter">Join Our Newsletter</string>
+    <string name="sign_up_for_details">Sign up for deals, new products and promotions</string>
+    <string name="email_address">Email address</string>
+    <string name="signup">Signup</string>
 </resources>

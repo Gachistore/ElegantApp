@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import com.example.elegantapp.R
 import androidx.compose.ui.text.TextStyle
 import com.example.elegantapp.ui.theme.ElegantAppTheme
-import com.example.elegantapp.ui.theme.Popins
+import com.example.elegantapp.ui.theme.Poppins
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,7 +35,7 @@ fun ElegantTopAppBar(modifier: Modifier = Modifier) {
                 text = stringResource(id = R.string.three_legant),
                 style = TextStyle(
                     fontSize = 16.sp,
-                    fontFamily = Popins,
+                    fontFamily = Poppins,
                 ),
             )
         },

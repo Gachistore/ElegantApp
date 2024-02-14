@@ -8,7 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.elegantapp.R
 
-val Popins = FontFamily(
+val Poppins = FontFamily(
     Font(R.font.poppins, FontWeight.Normal),
     Font(R.font.poppins_medium, FontWeight.W500),
     Font(R.font.poppins_semibold, FontWeight.SemiBold)

@@ -74,3 +74,10 @@ val SalesUpSaleTitleColor = Color(0xFF141718)
 val SalesUpSaleDescriptionColor = Color(0xFF141718)
 
 val ArticleTitleColor = Color(0xFF23262F)
+
+val JoinOurNewsBackgroundColor = Color(0xFFF2F4F6)
+val JoinOurNewsTitleColor = Color(0xFF141718)
+val JoinOurNewsDescriptionColor = Color(0xFF141718)
+val JoinOurNewsMailIconColor = Color(0xFF141718)
+val JoinOurNewsEmailAddressColor = Color(0xFF6C7275)
+val JoinOurNewsSignupColor = Color(0xFF6C7275)

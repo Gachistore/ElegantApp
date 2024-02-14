@@ -32,7 +32,7 @@ import com.example.elegantapp.R
 import com.example.elegantapp.ui.theme.ElegantAppTheme
 import com.example.elegantapp.ui.theme.FooterColor
 import com.example.elegantapp.ui.theme.Inter
-import com.example.elegantapp.ui.theme.Popins
+import com.example.elegantapp.ui.theme.Poppins
 
 // size: 375 to 665
 @Composable
@@ -58,7 +58,7 @@ fun Footer(
                 ) {
                     Text(
                         text = stringResource(id = R.string.three_legant),
-                        fontFamily = Popins,
+                        fontFamily = Poppins,
                         fontWeight = FontWeight.SemiBold,
                         fontSize = 24.sp,
                         textAlign = TextAlign.Center,
@@ -179,7 +179,7 @@ fun Footer(
                 ) {
                     Text(
                         text = stringResource(id = R.string.privacy_policy),
-                        fontFamily = Popins,
+                        fontFamily = Poppins,
                         fontWeight = FontWeight.SemiBold,
                         fontSize = 12.sp,
                         textAlign = TextAlign.Center,
@@ -187,7 +187,7 @@ fun Footer(
                     )
                     Text(
                         text = stringResource(id = R.string.terns_of_use),
-                        fontFamily = Popins,
+                        fontFamily = Poppins,
                         fontWeight = FontWeight.SemiBold,
                         fontSize = 12.sp,
                         textAlign = TextAlign.Center,
@@ -197,7 +197,7 @@ fun Footer(
                 Spacer(Modifier.height(28.dp))
                 Text(
                     text = stringResource(id = R.string.copyright),
-                    fontFamily = Popins,
+                    fontFamily = Poppins,
                     fontWeight = FontWeight.Normal,
                     fontSize = 11.sp,
                     textAlign = TextAlign.Center,
