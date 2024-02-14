@@ -23,6 +23,9 @@
 
     <string name="shop_now">Shop Now</string>
     <string name="more_products">More Products</string>
+    <string name="read_more">Read More</string>
+    <string name="more_articles">More Articles</string>
+    <string name="articles">Articles</string>
     <string name="new_arrivals">New \nArrivals</string>
 
     <string name="living_room">Living Room</string>
@@ -37,4 +40,7 @@
     <string name="secure_payments_description">Secured \nby Stripe</string>
     <string name="allday_support">24/7 Support</string>
     <string name="allday_support_description">Phone and \nEmail support</string>
+
+    <string name="sales_image_content_description">Sales image</string>
+    <string name="sale_up_to_text">SALES UP TO %s OFF</string>
 </resources>

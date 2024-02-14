@@ -41,7 +41,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.elegantapp.R
-import com.example.elegantapp.model.ProductCardData
+import com.example.elegantapp.model.ProductData
 import com.example.elegantapp.ui.theme.ElegantAppTheme
 import com.example.elegantapp.ui.theme.FilledStarColor
 import com.example.elegantapp.ui.theme.Inter
@@ -55,7 +55,7 @@ import com.example.elegantapp.ui.theme.Secondary
 import java.text.NumberFormat
 
 @Composable
-fun ProductCard(data: ProductCardData, modifier: Modifier = Modifier) {
+fun ProductCard(data: ProductData, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
     ) {
@@ -241,7 +241,7 @@ fun ProductCard(data: ProductCardData, modifier: Modifier = Modifier) {
 @Composable
 private fun ProductCardPreview1() {
     ElegantAppTheme {
-        var data = ProductCardData(
+        var data = ProductData(
             image = R.drawable.test_sofa,
             isNew = true,
             discount = 50,
@@ -263,7 +263,7 @@ private fun ProductCardPreview1() {
 @Composable
 private fun ProductCardPreview2() {
     ElegantAppTheme {
-        var data = ProductCardData(
+        var data = ProductData(
             image = R.drawable.test_sofa,
             isNew = false,
             discount = 50,
@@ -285,7 +285,7 @@ private fun ProductCardPreview2() {
 @Composable
 private fun ProductCardPreview3() {
     ElegantAppTheme {
-        var data = ProductCardData(
+        var data = ProductData(
             image = R.drawable.test_sofa,
             isNew = false,
             discount = 0,
@@ -307,7 +307,7 @@ private fun ProductCardPreview3() {
 @Composable
 private fun ProductCardPreview4() {
     ElegantAppTheme {
-        var data = ProductCardData(
+        var data = ProductData(
             image = R.drawable.test_sofa,
             isNew = true,
             discount = 10,
@@ -329,7 +329,7 @@ private fun ProductCardPreview4() {
 @Composable
 private fun ProductCardPreview5() {
     ElegantAppTheme {
-        var data = ProductCardData(
+        var data = ProductData(
             image = R.drawable.test_sofa,
             isNew = true,
             discount = 50,

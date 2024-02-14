@@ -1,19 +1,18 @@
 package com.example.elegantapp.data
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DirectionsCar
 import androidx.compose.material.icons.outlined.AttachMoney
 import androidx.compose.material.icons.outlined.Call
 import androidx.compose.material.icons.outlined.DirectionsCar
 import androidx.compose.material.icons.outlined.Lock
 import com.example.elegantapp.R
-import com.example.elegantapp.model.BenefitCardData
-import com.example.elegantapp.model.ProductCardData
-import com.example.elegantapp.ui.components.cards.BenefitOfElegantGrayCard
+import com.example.elegantapp.model.ArticleData
+import com.example.elegantapp.model.BenefitData
+import com.example.elegantapp.model.ProductData
 
 object ElegantLists {
     val NewArrivals = listOf(
-        ProductCardData(
+        ProductData(
             R.drawable.kitchen_toster,
             true,
             10,
@@ -23,7 +22,7 @@ object ElegantLists {
             100,
             111
         ),
-        ProductCardData(
+        ProductData(
             R.drawable.test_sofa,
             false,
             20,
@@ -33,7 +32,7 @@ object ElegantLists {
             200,
             250
         ),
-        ProductCardData(
+        ProductData(
             R.drawable.living_room_chair,
             true,
             0,
@@ -42,7 +41,7 @@ object ElegantLists {
             "Chilling Chair",
             50
         ),
-        ProductCardData(
+        ProductData(
             R.drawable.bedroom_nightstand,
             true,
             50,
@@ -55,25 +54,39 @@ object ElegantLists {
 
     )
     val Benefits = listOf(
-        BenefitCardData(
+        BenefitData(
             Icons.Outlined.DirectionsCar,
             R.string.free_shipping,
             R.string.free_shipping_description
         ),
-        BenefitCardData(
+        BenefitData(
             Icons.Outlined.AttachMoney,
             R.string.money_back,
             R.string.money_back_description
         ),
-        BenefitCardData(
+        BenefitData(
             Icons.Outlined.Lock,
             R.string.secure_payments,
             R.string.secure_payments_description
         ),
-        BenefitCardData(
+        BenefitData(
             Icons.Outlined.Call,
             R.string.allday_support,
             R.string.allday_support_description
+        )
+    )
+    val Articles = listOf(
+        ArticleData(
+            image = R.drawable.first_article,
+            title = "7 ways to decor your home"
+        ),
+        ArticleData(
+            image = R.drawable.second_article,
+            title = "Kitchen organization"
+        ),
+        ArticleData(
+            image = R.drawable.third_article,
+            title = "Decor your bedroom"
         )
     )
 }

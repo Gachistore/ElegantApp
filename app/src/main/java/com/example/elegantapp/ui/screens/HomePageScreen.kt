@@ -4,19 +4,20 @@ import android.annotation.SuppressLint
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -24,6 +25,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowForward
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -47,9 +49,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.elegantapp.R
 import com.example.elegantapp.data.ElegantLists
-import com.example.elegantapp.model.BenefitCardData
-import com.example.elegantapp.model.ProductCardData
+import com.example.elegantapp.model.ArticleData
+import com.example.elegantapp.model.BenefitData
+import com.example.elegantapp.model.ProductData
 import com.example.elegantapp.ui.components.Footer
+import com.example.elegantapp.ui.components.cards.ArticleCard
 import com.example.elegantapp.ui.components.cards.HomePageProductCategoryCard
 import com.example.elegantapp.ui.components.cards.ProductCard
 import com.example.elegantapp.ui.theme.ElegantAppTheme
@@ -57,6 +61,11 @@ import com.example.elegantapp.ui.theme.FooterColor
 import com.example.elegantapp.ui.theme.Inter
 import com.example.elegantapp.ui.theme.Popins
 import com.example.elegantapp.ui.components.cards.BenefitOfElegantGrayCard
+import com.example.elegantapp.ui.theme.LinkButtonWithArrowColor
+import com.example.elegantapp.ui.theme.SalesUpSaleBackgroundColor
+import com.example.elegantapp.ui.theme.SalesUpSaleColor
+import com.example.elegantapp.ui.theme.SalesUpSaleDescriptionColor
+import com.example.elegantapp.ui.theme.SalesUpSaleTitleColor
 
 @Composable
 fun HomePageScreen() {
@@ -95,7 +104,18 @@ fun HomePageScreen() {
             benefitsList = ElegantLists.Benefits,
             modifier = Modifier.padding(dimensionResource(R.dimen.default_32_padding))
         )
-
+        SalesUp(
+            modifier = Modifier.fillMaxWidth()
+        )
+        Articles(
+            articles = ElegantLists.Articles,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    vertical = dimensionResource(R.dimen.default_40_padding),
+                    horizontal = dimensionResource(R.dimen.default_32_padding)
+                )
+        )
 
         Footer()
     }
@@ -192,7 +212,7 @@ private fun Categories(
 
 @Composable
 private fun NewArrivals(
-    productList: List<ProductCardData>,
+    productList: List<ProductData>,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -242,7 +262,7 @@ private fun NewArrivals(
 
 @Composable
 private fun Benefits(
-    benefitsList: List<BenefitCardData>,
+    benefitsList: List<BenefitData>,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -278,13 +298,116 @@ private fun Benefits(
     }
 }
 
+@Composable
+private fun SalesUp(
+    modifier: Modifier = Modifier
+) {
+    Column (
+        modifier = modifier.background(SalesUpSaleBackgroundColor)
+    ){
+        Image(
+            painter = painterResource(R.drawable.sales_sofa),
+            contentDescription = stringResource(R.string.sales_image_content_description),
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(367.dp)
+        )
+        Column(
+            modifier = Modifier
+                .padding(
+                    vertical = 58.dp,
+                    horizontal = dimensionResource(R.dimen.default_32_padding)
+                )
+        ) {
+            Column {
+                Text(
+                    text = stringResource(R.string.sale_up_to_text, "35%"),
+                    fontFamily = Inter,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 15.sp,
+                    color = SalesUpSaleColor
+                )
+                Spacer(Modifier.height(dimensionResource(R.dimen.default_16_padding)))
+                Text(
+                    text = "HUNDREDS of \n" +
+                            "New lower prices!",
+                    fontFamily = Popins,
+                    fontWeight = FontWeight.W600,
+                    fontSize = 32.sp,
+                    lineHeight = 36.sp,
+                    color = SalesUpSaleTitleColor
+                )
+                Spacer(Modifier.height(dimensionResource(R.dimen.default_16_padding)))
+                Text(
+                    text = "It’s more affordable than ever to give every room in your home a stylish makeover",
+                    fontFamily = Inter,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 15.sp,
+                    lineHeight = 24.sp,
+                    color = SalesUpSaleDescriptionColor
+                )
+            }
+            Spacer(Modifier.height(dimensionResource(R.dimen.default_24_padding)))
+            LinkButtonWithArrow(
+                text = R.string.shop_now,
+                fontSize = 13,
+                color = LinkButtonWithArrowColor
+            )
+        }
+    }
+}
+
+@Composable
+private fun Articles(
+    articles: List<ArticleData>,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier.background(MaterialTheme.colorScheme.background)
+    ) {
+        Row(
+            modifier = Modifier.height(38.dp)
+        ) {
+            Text(
+                text = stringResource(R.string.articles),
+                fontFamily = Popins,
+                fontWeight = FontWeight.W500,
+                fontSize = 32.sp,
+                lineHeight = 36.sp,
+                color = Color.Black
+            )
+            Spacer(Modifier.weight(1f))
+            Column(
+                verticalArrangement = Arrangement.Bottom
+            ) {
+                Spacer(Modifier.weight(1f))
+                LinkButtonWithArrow(
+                    text = R.string.more_articles,
+                    fontSize = 13,
+                    color = LinkButtonWithArrowColor
+                )
+            }
+        }
+        Spacer(Modifier.height(40.dp))
+        Column(
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.default_24_padding))
+        ) {
+            articles.forEach {
+                ArticleCard(
+                    articleData = it,
+                )
+            }
+        }
+    }
+}
 
 @Composable
 fun LinkButtonWithArrow(
-    onClick: () -> Unit = {},
     @StringRes text: Int,
     fontSize: Int,
     color: Color,
+    onClick: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -335,23 +458,31 @@ fun Modifier.bottomBorder(strokeWidth: Dp, color: Color) = composed(
     }
 )
 
+
+//@Preview(showBackground = true)
+//@Composable
+//private fun HomePageScreenPreview() {
+//    ElegantAppTheme {
+//        HomePageScreen()
+//    }
+//}
 //
 //@Preview(showBackground = true)
-@Composable
-private fun HomePageScreenPreview() {
-    ElegantAppTheme {
-        HomePageScreen()
-    }
-}
+//@Composable
+//private fun HomePageNewArrivalsPreview() {
+//    ElegantAppTheme {
+//        NewArrivals(
+//            productList = ElegantLists.NewArrivals,
+//            modifier = Modifier.fillMaxWidth()
+//        )
+//    }
+//}
 
 @Preview(showBackground = true)
 @Composable
-private fun HomePageNewArrivalsPreview() {
+private fun HomePageSalesUpPreview() {
     ElegantAppTheme {
-        NewArrivals(
-            productList = ElegantLists.NewArrivals,
-            modifier = Modifier.fillMaxWidth()
-        )
+        SalesUp()
     }
 }
 

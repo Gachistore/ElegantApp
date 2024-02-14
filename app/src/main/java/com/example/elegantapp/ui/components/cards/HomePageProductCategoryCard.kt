@@ -35,6 +35,7 @@ import com.example.elegantapp.ui.screens.LinkButtonWithArrow
 import com.example.elegantapp.ui.theme.BlackOnCards
 import com.example.elegantapp.ui.theme.ElegantAppTheme
 import com.example.elegantapp.ui.theme.HomePageProductCategoryColor
+import com.example.elegantapp.ui.theme.LinkButtonWithArrowColor
 import com.example.elegantapp.ui.theme.Popins
 
 @Composable
@@ -71,7 +72,7 @@ fun HomePageProductCategoryCard(
                 LinkButtonWithArrow(
                     text = R.string.shop_now,
                     fontSize = 13,
-                    color = BlackOnCards
+                    color = LinkButtonWithArrowColor
                 )
 
             }
@@ -107,7 +108,7 @@ fun HomePageProductCategoryCard(
                         LinkButtonWithArrow(
                             text = R.string.shop_now,
                             fontSize = 13,
-                            color = BlackOnCards
+                            color = LinkButtonWithArrowColor
                         )
                     }
                 }

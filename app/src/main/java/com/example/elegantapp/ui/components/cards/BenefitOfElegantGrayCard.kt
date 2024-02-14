@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.elegantapp.R
-import com.example.elegantapp.model.BenefitCardData
+import com.example.elegantapp.model.BenefitData
 import com.example.elegantapp.ui.theme.BenefitOfElegantGrayCardColor
 import com.example.elegantapp.ui.theme.BenefitOfElegantGrayCardDescriptionColor
 import com.example.elegantapp.ui.theme.BenefitOfElegantGrayCardIconColor
@@ -31,7 +31,7 @@ import com.example.elegantapp.ui.theme.Inter
 
 @Composable
 fun BenefitOfElegantGrayCard(
-    benefitData: BenefitCardData,
+    benefitData: BenefitData,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -82,7 +82,7 @@ fun BenefitOfElegantGrayCard(
 @Composable
 private fun BenefitOfElegantGrayCard() {
     ElegantAppTheme {
-        val benefitData = BenefitCardData(
+        val benefitData = BenefitData(
             icon = Icons.Filled.DirectionsCar,
             title = R.string.secure_payments,
             description = R.string.secure_payments_description
