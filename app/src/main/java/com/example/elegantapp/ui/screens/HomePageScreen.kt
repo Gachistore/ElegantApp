@@ -51,7 +51,6 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
@@ -273,7 +272,7 @@ private fun NewArrivals(
         Spacer(Modifier.height(dimensionResource(R.dimen.default_8_padding)))
         LinkButtonWithArrow(
             text = R.string.more_products,
-            fontSize = 13,
+            fontSizeSp = 13,
             color = FooterColor,
             modifier = Modifier.padding(
                 start = dimensionResource(R.dimen.default_32_padding),
@@ -374,7 +373,7 @@ private fun SalesUp(
             Spacer(Modifier.height(dimensionResource(R.dimen.default_24_padding)))
             LinkButtonWithArrow(
                 text = R.string.shop_now,
-                fontSize = 13,
+                fontSizeSp = 13,
                 color = LinkButtonWithArrowColor
             )
         }
@@ -407,7 +406,7 @@ private fun Articles(
                 Spacer(Modifier.weight(1f))
                 LinkButtonWithArrow(
                     text = R.string.more_articles,
-                    fontSize = 13,
+                    fontSizeSp = 13,
                     color = LinkButtonWithArrowColor
                 )
             }
@@ -509,7 +508,7 @@ private fun JoinOurNes(
 @Composable
 fun LinkButtonWithArrow(
     @StringRes text: Int,
-    fontSize: Int,
+    fontSizeSp: Int,
     color: Color,
     onClick: () -> Unit = {},
     modifier: Modifier = Modifier
@@ -527,7 +526,7 @@ fun LinkButtonWithArrow(
                     text = stringResource(text),
                     fontFamily = Inter,
                     fontWeight = FontWeight.SemiBold,
-                    fontSize = fontSize.sp,
+                    fontSize = fontSizeSp.sp,
                     color = color
                 )
                 Spacer(Modifier.width(4.dp))
@@ -535,7 +534,7 @@ fun LinkButtonWithArrow(
                     imageVector = Icons.Rounded.ArrowForward,
                     contentDescription = "Go to the ",
                     tint = color,
-                    modifier = Modifier.size(fontSize.dp)
+                    modifier = Modifier.size(fontSizeSp.dp)
                 )
             }
         }

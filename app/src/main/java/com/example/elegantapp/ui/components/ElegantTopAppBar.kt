@@ -22,7 +22,10 @@ import com.example.elegantapp.ui.theme.Poppins
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ElegantTopAppBar(modifier: Modifier = Modifier) {
+fun ElegantTopAppBar(
+    onDrawerClick: () -> Unit = {},
+    modifier: Modifier = Modifier
+) {
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.background,
@@ -40,18 +43,19 @@ fun ElegantTopAppBar(modifier: Modifier = Modifier) {
             )
         },
         navigationIcon = {
-            IconButton(onClick = { /* TODO */ }) {
+            IconButton(onClick = onDrawerClick) {
                 Icon(
                     imageVector = Icons.Filled.Menu,
-                    contentDescription = null
+                    contentDescription = "Navigation button"
                 )
             }
         },
+
         actions = {
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_shopping_bag),
-                    contentDescription = null
+                    contentDescription = "Basket button"
                 )
             }
         },

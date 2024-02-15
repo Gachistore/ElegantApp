@@ -65,7 +65,7 @@ fun HomePageProductCategoryCard(
                 Spacer(Modifier.height(6.dp))
                 LinkButtonWithArrow(
                     text = R.string.shop_now,
-                    fontSize = 13,
+                    fontSizeSp = 13,
                     color = LinkButtonWithArrowColor
                 )
 
@@ -101,7 +101,7 @@ fun HomePageProductCategoryCard(
                         Spacer(Modifier.height(6.dp))
                         LinkButtonWithArrow(
                             text = R.string.shop_now,
-                            fontSize = 13,
+                            fontSizeSp = 13,
                             color = LinkButtonWithArrowColor
                         )
                     }

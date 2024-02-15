@@ -156,21 +156,21 @@ fun Footer(
                         IconButton(onClick = { /*TODO*/ }) {
                             Icon(
                                 painter = painterResource(R.drawable.ic_instagram_outlined),
-                                contentDescription = null,
+                                contentDescription = "Follow us in instagram",
                                 tint = Color.White
                             )
                         }
                         IconButton(onClick = { /*TODO*/ }) {
                             Icon(
                                 painter = painterResource(R.drawable.ic_facebook_outlined),
-                                contentDescription = null,
+                                contentDescription = "Follow us in facebook",
                                 tint = Color.White
                             )
                         }
                         IconButton(onClick = { /*TODO*/ }) {
                             Icon(
                                 painter = painterResource(R.drawable.ic_youtube_outlined),
-                                contentDescription = null,
+                                contentDescription = "Follow us in youtube",
                                 tint = Color.White
                             )
                         }

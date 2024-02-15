@@ -171,7 +171,7 @@ fun ProductCard(data: ProductData, modifier: Modifier = Modifier) {
                             text = stringResource(id = R.string.add_to_cart),
                             fontFamily = Inter,
                             fontSize = 16.sp,
-                            fontWeight = FontWeight.Normal,
+                            fontWeight = FontWeight.W500,
                         )
                     }
                 }

@@ -56,7 +56,7 @@ fun ArticleCard(
         Spacer(Modifier.height(dimensionResource(R.dimen.default_8_padding)))
         LinkButtonWithArrow(
             text = R.string.read_more,
-            fontSize = 13,
+            fontSizeSp = 13,
             color = LinkButtonWithArrowColor
         )
     }
