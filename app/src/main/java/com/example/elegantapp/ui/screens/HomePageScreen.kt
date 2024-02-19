@@ -425,7 +425,7 @@ private fun Articles(
 }
 
 @Composable
-private fun JoinOurNes(
+fun JoinOurNes(
     modifier: Modifier = Modifier
 ) {
     var text by rememberSaveable {
@@ -438,7 +438,7 @@ private fun JoinOurNes(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(
                 vertical = 95.dp,
-                horizontal = dimensionResource(R.dimen.default_32_padding)
+                horizontal = 32.dp
             )
         ) {
             Column(
@@ -453,7 +453,7 @@ private fun JoinOurNes(
                     color = JoinOurNewsTitleColor,
                     textAlign = TextAlign.Center
                 )
-                Spacer(Modifier.height(dimensionResource(R.dimen.default_8_padding)))
+                Spacer(Modifier.height(8.dp))
                 Text(
                     text = stringResource(R.string.sign_up_for_details),
                     fontFamily = Inter,
@@ -464,7 +464,7 @@ private fun JoinOurNes(
                     textAlign = TextAlign.Center
                 )
             }
-            Spacer(Modifier.height(dimensionResource(R.dimen.default_32_padding)))
+            Spacer(Modifier.height(32.dp))
             OutlinedTextField(
                 value = text,
                 onValueChange = { text = it },
@@ -560,7 +560,25 @@ fun Modifier.bottomBorder(strokeWidth: Dp, color: Color) = composed(
         }
     }
 )
+@SuppressLint("ModifierFactoryUnreferencedReceiver")
+fun Modifier.topBorder(strokeWidth: Dp, color: Color) = composed(
+    factory = {
+        val density = LocalDensity.current
+        val strokeWidthPx = density.run { strokeWidth.toPx() }
 
+        Modifier.drawBehind {
+            val width = size.width
+            val strokeWidthHalf = strokeWidthPx / 2
+
+            drawLine(
+                color = color,
+                start = Offset(x = 0f, y = strokeWidthHalf),
+                end = Offset(x = width, y = strokeWidthHalf),
+                strokeWidth = strokeWidthPx
+            )
+        }
+    }
+)
 
 //@Preview(showBackground = true)
 //@Composable

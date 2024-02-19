@@ -51,4 +51,7 @@
     <string name="email_address">Email address</string>
     <string name="signup">Signup</string>
     <string name="search">Search</string>
+
+    <string name="shop_page">Shop Page</string>
+    <string name="filter">Filter</string>
 </resources>

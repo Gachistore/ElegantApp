@@ -19,6 +19,7 @@ object ElegantLists {
             true,
             4,
             "Toster",
+            "",
             100,
             111
         ),
@@ -29,6 +30,7 @@ object ElegantLists {
             false,
             5,
             "Best Sofa",
+            "",
             200,
             250
         ),
@@ -39,6 +41,7 @@ object ElegantLists {
             false,
             1,
             "Chilling Chair",
+            "",
             50
         ),
         ProductData(
@@ -48,6 +51,7 @@ object ElegantLists {
             true,
             3,
             "NightStand",
+            "",
             300,
             600
         )

@@ -10,6 +10,7 @@ data class ProductData(
     var isLiked: Boolean = false,
     @IntRange(from = 0, to = 5) val rating: Int,
     val title: String,
+    val description: String = "",
     val price: Int,
     val previousPrice: Int = 0
 )
