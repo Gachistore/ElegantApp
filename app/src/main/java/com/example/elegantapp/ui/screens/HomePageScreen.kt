@@ -37,6 +37,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.drawBehind
@@ -44,6 +45,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -58,6 +60,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import com.example.elegantapp.ElegantAppScreen
 import com.example.elegantapp.R
 import com.example.elegantapp.data.ElegantLists
 import com.example.elegantapp.model.ArticleData
@@ -66,7 +70,7 @@ import com.example.elegantapp.model.ProductData
 import com.example.elegantapp.ui.components.Footer
 import com.example.elegantapp.ui.components.cards.ArticleCard
 import com.example.elegantapp.ui.components.cards.HomePageProductCategoryCard
-import com.example.elegantapp.ui.components.cards.ProductCard
+import com.example.elegantapp.ui.components.cards.ProductCardVertical
 import com.example.elegantapp.ui.theme.ElegantAppTheme
 import com.example.elegantapp.ui.theme.FooterColor
 import com.example.elegantapp.ui.theme.Inter
@@ -85,7 +89,9 @@ import com.example.elegantapp.ui.theme.SalesUpSaleDescriptionColor
 import com.example.elegantapp.ui.theme.SalesUpSaleTitleColor
 
 @Composable
-fun HomePageScreen() {
+fun HomePageScreen(
+    navController: NavHostController
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -104,6 +110,7 @@ fun HomePageScreen() {
         )
         Spacer(Modifier.height(dimensionResource(R.dimen.introduction_bottom_padding)))
         Categories(
+            navController = navController,
             modifier = Modifier
                 .padding(
                     start = dimensionResource(R.dimen.home_page_start_padding),
@@ -139,7 +146,7 @@ fun HomePageScreen() {
         )
 
 
-        Footer()
+        Footer(navController = navController)
     }
 }
 
@@ -207,6 +214,7 @@ private fun Introduction(
 
 @Composable
 private fun Categories(
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -217,17 +225,20 @@ private fun Categories(
         HomePageProductCategoryCard(
             text = R.string.living_room,
             image = R.drawable.living_room_chair,
-            isBigImage = true
+            isBigImage = true,
+            onClick = { navController.navigate(ElegantAppScreen.ShopPage.name) }
         )
         HomePageProductCategoryCard(
             text = R.string.bedroom,
             image = R.drawable.bedroom_nightstand,
-            isBigImage = false
+            isBigImage = false,
+            onClick = { navController.navigate(ElegantAppScreen.ShopPage.name) }
         )
         HomePageProductCategoryCard(
             text = R.string.kitchen,
             image = R.drawable.kitchen_toster,
-            isBigImage = false
+            isBigImage = false,
+            onClick = { navController.navigate(ElegantAppScreen.ShopPage.name) }
         )
     }
 }
@@ -261,7 +272,7 @@ private fun NewArrivals(
             contentPadding = PaddingValues(dimensionResource(R.dimen.default_32_padding))
         ) {
             items(productList) { product ->
-                ProductCard(
+                ProductCardVertical(
                     product,
                     modifier = Modifier
                         .width(231.dp)
@@ -283,7 +294,7 @@ private fun NewArrivals(
 }
 
 @Composable
-private fun Benefits(
+fun Benefits(
     benefitsList: List<BenefitData>,
     modifier: Modifier = Modifier
 ) {
@@ -424,6 +435,7 @@ private fun Articles(
     }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun JoinOurNes(
     modifier: Modifier = Modifier
@@ -431,6 +443,7 @@ fun JoinOurNes(
     var text by rememberSaveable {
         mutableStateOf("")
     }
+    val keyboardController = LocalSoftwareKeyboardController.current
     Column(
         modifier = modifier.background(color = JoinOurNewsBackgroundColor)
     ) {
@@ -489,7 +502,11 @@ fun JoinOurNes(
                     )
                 },
                 trailingIcon = {
-                    TextButton(onClick = { text = "" }) {
+                    TextButton(onClick = {
+                        text = ""
+                        keyboardController?.hide()
+                    }
+                    ) {
                         Text(
                             text = stringResource(R.string.signup),
                             fontFamily = Inter,
@@ -560,6 +577,7 @@ fun Modifier.bottomBorder(strokeWidth: Dp, color: Color) = composed(
         }
     }
 )
+
 @SuppressLint("ModifierFactoryUnreferencedReceiver")
 fun Modifier.topBorder(strokeWidth: Dp, color: Color) = composed(
     factory = {

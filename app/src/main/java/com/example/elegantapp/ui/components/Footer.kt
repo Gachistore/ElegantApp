@@ -29,6 +29,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.elegantapp.ElegantAppScreen
 import com.example.elegantapp.R
 import com.example.elegantapp.ui.theme.ElegantAppTheme
 import com.example.elegantapp.ui.theme.FooterColor
@@ -38,6 +41,7 @@ import com.example.elegantapp.ui.theme.Poppins
 // size: 375 to 665
 @Composable
 fun Footer(
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -94,7 +98,9 @@ fun Footer(
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
                         color = Color.White,
-                        modifier = Modifier.fillMaxWidth().clickable { /* TODO */ }
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { navController.navigate(ElegantAppScreen.HomePage.name) }
                     )
                     Text(
                         text = stringResource(id = R.string.shop),
@@ -103,7 +109,9 @@ fun Footer(
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
                         color = Color.White,
-                        modifier = Modifier.fillMaxWidth().clickable { /* TODO */ }
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { navController.navigate("${ElegantAppScreen.ShopPage.name}/Living Room") }
                     )
                     Text(
                         text = stringResource(id = R.string.product),
@@ -112,7 +120,9 @@ fun Footer(
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
                         color = Color.White,
-                        modifier = Modifier.fillMaxWidth().clickable { /* TODO */ }
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { /* TODO */ }
                     )
                     Text(
                         text = stringResource(id = R.string.blog),
@@ -121,7 +131,9 @@ fun Footer(
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
                         color = Color.White,
-                        modifier = Modifier.fillMaxWidth().clickable { /* TODO */ }
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { /* TODO */ }
                     )
                     Text(
                         text = stringResource(id = R.string.contact_us),
@@ -130,7 +142,9 @@ fun Footer(
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
                         color = Color.White,
-                        modifier = Modifier.fillMaxWidth().clickable { /* TODO */ }
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { navController.navigate(ElegantAppScreen.ContactUsPage.name) }
                     )
                 }
             }
@@ -219,6 +233,7 @@ fun Footer(
 @Composable
 private fun FooterPreview() {
     ElegantAppTheme {
-        Footer()
+        val navController: NavHostController = rememberNavController()
+        Footer(navController = navController)
     }
 }

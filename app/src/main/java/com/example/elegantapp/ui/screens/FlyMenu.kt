@@ -64,10 +64,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.elegantapp.ElegantAppScreen
 import com.example.elegantapp.ui.theme.ProductCardAddToCartButton
 
 @Composable
 fun FlyMenu(
+    navController: NavHostController,
     onClose: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
@@ -149,13 +153,13 @@ fun FlyMenu(
                         titleRes = R.string.home,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { /* TODO */ }
+                            .clickable { navController.navigate(ElegantAppScreen.HomePage.name) }
                     )
                     FlyMenuTitle(
                         titleRes = R.string.shop,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { /* TODO */ }
+                            .clickable { navController.navigate(ElegantAppScreen.ShopPage.name) }
                     )
                     FlyMenuTitle(
                         titleRes = R.string.product,
@@ -167,7 +171,7 @@ fun FlyMenu(
                         titleRes = R.string.contact_us,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { /* TODO */ }
+                            .clickable { navController.navigate(ElegantAppScreen.ContactUsPage.name) }
 
                     )
                 }
@@ -311,7 +315,8 @@ private fun FlyMenuBasket(
 @Preview(showBackground = true, heightDp = 700)
 @Composable
 private fun FlyMenuPreview() {
+    val navController: NavHostController = rememberNavController()
     ElegantAppTheme {
-        FlyMenu()
+        FlyMenu(navController = navController)
     }
 }

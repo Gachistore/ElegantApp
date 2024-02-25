@@ -1,13 +1,25 @@
 package com.example.elegantapp.ui.screens
 
 import androidx.annotation.DrawableRes
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,13 +27,33 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.ViewAgenda
+import androidx.compose.material.icons.filled.ViewColumn
 import androidx.compose.material.icons.outlined.Tune
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,23 +68,35 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.text.font.FontWeight.Companion.W600
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.elegantapp.R
+import com.example.elegantapp.data.ElegantLists
 import com.example.elegantapp.model.ProductData
 import com.example.elegantapp.ui.components.Footer
+import com.example.elegantapp.ui.components.cards.ProductCardHorizontal
+import com.example.elegantapp.ui.components.cards.ProductCardVertical
+import com.example.elegantapp.ui.theme.Black200
 import com.example.elegantapp.ui.theme.Black900
 import com.example.elegantapp.ui.theme.ElegantAppTheme
 import com.example.elegantapp.ui.theme.Inter
 import com.example.elegantapp.ui.theme.Neutral03
+import com.example.elegantapp.ui.theme.Neutral04
 import com.example.elegantapp.ui.theme.Neutral07
 import com.example.elegantapp.ui.theme.Poppins
+import kotlin.math.ceil
 
 @Composable
-fun ShopPageScreen() {
+fun ShopPageScreen(
+    navController: NavHostController,
+    room: String?
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -65,14 +109,21 @@ fun ShopPageScreen() {
                 .fillMaxWidth()
                 .padding(start = 32.dp, end = 32.dp)
         )
-
+        ProductsList(
+            room = room ?: "Some issues was caused",
+            productsList = ElegantLists.NewArrivals,
+            options = listOf("Big Cock", "Big dick"),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 32.dp, end = 32.dp)
+        )
 
 
         JoinOurNes(
             modifier = Modifier
                 .fillMaxWidth()
         )
-        Footer()
+        Footer(navController = navController)
     }
 }
 
@@ -118,13 +169,26 @@ fun TitleImage(
     }
 }
 
+@OptIn(
+    ExperimentalMaterial3Api::class,
+    ExperimentalAnimationApi::class
+)
 @Composable
 private fun ProductsList(
+    room: String,
     productsList: List<ProductData>?,
+    options: List<String>,
     modifier: Modifier = Modifier
 ) {
-    var isEnabled by rememberSaveable {
+    var isVertical by rememberSaveable {
         mutableStateOf(true)
+    }
+    var expanded by remember { mutableStateOf(false) }
+    var selectedOptionText by remember { mutableStateOf("Sort by") }
+    var visibleState = remember {
+        MutableTransitionState(false).apply {
+            targetState = true
+        }
     }
     Column(
         modifier = modifier
@@ -156,18 +220,202 @@ private fun ProductsList(
                 )
                 Spacer(Modifier.weight(1f))
                 Row(
-                    modifier = Modifier.border(1.dp, Neutral03)
+                    modifier = Modifier.padding(vertical = 8.dp)
                 ) {
-                    IconButton(onClick = { isEnabled = true }) {
-                        
+                    OutlinedButton(
+                        onClick = { isVertical = true },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (isVertical) Color(0xFFF3F5F7) else Color.White,
+                            contentColor = if (isVertical) Neutral07 else Neutral04,
+                        ),
+                        border = BorderStroke(1.dp, Black200),
+                        contentPadding = PaddingValues(all = 4.dp),
+                        shape = RoundedCornerShape(0.dp)
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_vertical_lines),
+                            contentDescription = "Column view of products"
+                        )
                     }
-                    IconButton(onClick = { isEnabled = false }) {
-
+                    OutlinedButton(
+                        onClick = { isVertical = false },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (!isVertical) Color(0xFFF3F5F7) else Color.White,
+                            contentColor = if (!isVertical) Neutral07 else Neutral04,
+                        ),
+                        border = BorderStroke(1.dp, Black200),
+                        contentPadding = PaddingValues(all = 4.dp),
+                        shape = RoundedCornerShape(0.dp)
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_horizontal_lines),
+                            contentDescription = "Row view of products"
+                        )
+                    }
+                }
+            }
+            Spacer(Modifier.height(16.dp))
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = room,
+                    fontFamily = Inter,
+                    fontWeight = W600,
+                    fontSize = 16.sp,
+                    lineHeight = 24.sp,
+                    color = Color.Black
+                )
+                Spacer(Modifier.weight(1f))
+                ExposedDropdownMenuBox(
+                    expanded = expanded,
+                    onExpandedChange = { expanded = !expanded }
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = selectedOptionText,
+                            fontFamily = Inter,
+                            fontWeight = W600,
+                            fontSize = 16.sp,
+                            lineHeight = 24.sp,
+                            color = Black900
+                        )
+                        Spacer(Modifier.width(4.dp))
+                        Icon(
+                            imageVector = Icons.Filled.KeyboardArrowDown,
+                            contentDescription = "Sort by",
+                            tint = Black900,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                    ExposedDropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false }
+                    ) {
+                        options.forEach { selectionOption ->
+                            DropdownMenuItem(
+                                text = {
+                                    Text(
+                                        text = selectionOption,
+                                        fontFamily = Inter,
+                                        fontWeight = W600,
+                                        fontSize = 16.sp,
+                                        lineHeight = 24.sp,
+                                        color = Black900
+                                    )
+                                },
+                                onClick = { selectedOptionText = selectionOption },
+                                contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
+                            )
+                        }
                     }
                 }
             }
         }
-
+        AnimatedVisibility(
+            visibleState = visibleState,
+            enter = fadeIn(
+                animationSpec = spring(dampingRatio = Spring.DampingRatioLowBouncy)
+            ),
+            exit = fadeOut(
+                animationSpec = spring(dampingRatio = Spring.DampingRatioLowBouncy)
+            )
+        ) {
+            if (productsList.isNullOrEmpty()) {
+                Text(
+                    text = "There is no products in our shop. Sorry (",
+                    fontFamily = Inter,
+                    fontWeight = W600,
+                    fontSize = 36.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(200.dp)
+                )
+            } else {
+                if (isVertical) {
+                    LazyVerticalGrid(
+                        columns = GridCells.Adaptive(152.dp),
+                        modifier = Modifier
+                            .padding(vertical = 32.dp)
+                            .height((281 * ceil(productsList.size / 2.0) + (ceil(productsList.size / 2.0) - 1) * 16).dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        userScrollEnabled = false
+                    ) {
+                        itemsIndexed(productsList) { index, product ->
+                            ProductCardVertical(
+                                data = product,
+                                imageSizeDp = 203,
+                                modifier = Modifier
+                                    .height(281.dp)
+                                    .animateEnterExit(
+                                        enter = slideInVertically(
+                                            animationSpec = spring(
+                                                stiffness = Spring.StiffnessVeryLow,
+                                                dampingRatio = Spring.DampingRatioLowBouncy
+                                            ),
+                                            initialOffsetY = { it * (index + 1) }
+                                        )
+                                    )
+                            )
+                        }
+                        visibleState = MutableTransitionState(false).apply { targetState = true }
+                    }
+                } else {
+                    LazyColumn(
+                        modifier = Modifier
+                            .padding(vertical = 32.dp)
+                            .height((250 * productsList.size + (productsList.size - 1) * 16).dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        userScrollEnabled = false
+                    ) {
+                        itemsIndexed(productsList) { index, product ->
+                            ProductCardHorizontal(
+                                data = product,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(250.dp)
+                                    .animateEnterExit(
+                                        enter = slideInVertically(
+                                            animationSpec = spring(
+                                                stiffness = Spring.StiffnessVeryLow,
+                                                dampingRatio = Spring.DampingRatioLowBouncy
+                                            ),
+                                            initialOffsetY = { it * (index + 1) }
+                                        )
+                                    )
+                            )
+                        }
+                        visibleState = MutableTransitionState(false).apply { targetState = true }
+                    }
+                }
+            }
+        }
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            OutlinedButton(
+                onClick = { /*TODO*/ },
+                shape = RoundedCornerShape(80.dp),
+                border = BorderStroke(1.dp, Neutral07)
+            ) {
+                Text(
+                    text = stringResource(R.string.show_more),
+                    fontFamily = Inter,
+                    fontWeight = W500,
+                    fontSize = 16.sp,
+                    lineHeight = 26.sp,
+                    color = Neutral07,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+        Spacer(Modifier.height(48.dp))
     }
 }
 
@@ -175,7 +423,8 @@ private fun ProductsList(
 @Preview(showBackground = true)
 @Composable
 private fun ShopPageScreenPreview() {
+    val navController: NavHostController = rememberNavController()
     ElegantAppTheme {
-        ShopPageScreen()
+        ShopPageScreen(navController = navController ,"Living room")
     }
 }

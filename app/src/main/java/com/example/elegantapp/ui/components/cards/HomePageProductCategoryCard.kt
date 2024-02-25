@@ -66,7 +66,8 @@ fun HomePageProductCategoryCard(
                 LinkButtonWithArrow(
                     text = R.string.shop_now,
                     fontSizeSp = 13,
-                    color = LinkButtonWithArrowColor
+                    color = LinkButtonWithArrowColor,
+                    onClick = { onClick }
                 )
 
             }
@@ -102,7 +103,8 @@ fun HomePageProductCategoryCard(
                         LinkButtonWithArrow(
                             text = R.string.shop_now,
                             fontSizeSp = 13,
-                            color = LinkButtonWithArrowColor
+                            color = LinkButtonWithArrowColor,
+                            onClick = { onClick }
                         )
                     }
                 }
