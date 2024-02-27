@@ -61,7 +61,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.elegantapp.ElegantAppScreen
 import com.example.elegantapp.R
 import com.example.elegantapp.data.ElegantLists
 import com.example.elegantapp.model.ArticleData
@@ -226,19 +225,19 @@ private fun Categories(
             text = R.string.living_room,
             image = R.drawable.living_room_chair,
             isBigImage = true,
-            onClick = { navController.navigate(ElegantAppScreen.ShopPage.name) }
+            onClick = { navController.navigate(Screen.ShopPage.passRoom("Living room")) }
         )
         HomePageProductCategoryCard(
             text = R.string.bedroom,
             image = R.drawable.bedroom_nightstand,
             isBigImage = false,
-            onClick = { navController.navigate(ElegantAppScreen.ShopPage.name) }
+            onClick = { navController.navigate(Screen.ShopPage.passRoom("Bedroom")) }
         )
         HomePageProductCategoryCard(
             text = R.string.kitchen,
             image = R.drawable.kitchen_toster,
             isBigImage = false,
-            onClick = { navController.navigate(ElegantAppScreen.ShopPage.name) }
+            onClick = { navController.navigate(Screen.ShopPage.passRoom("Kitchen")) }
         )
     }
 }
@@ -533,7 +532,7 @@ fun LinkButtonWithArrow(
     Row(
         modifier = modifier
             .bottomBorder(1.dp, FooterColor)
-            .clickable { onClick }
+            .clickable { onClick() }
     ) {
         Column {
             Row(

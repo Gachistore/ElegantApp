@@ -21,6 +21,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.elegantapp.graph.ElegantNavGraph
 import com.example.elegantapp.ui.components.ElegantTopAppBar
 import com.example.elegantapp.ui.screens.ContactUsScreen
 import com.example.elegantapp.ui.screens.FlyMenu
@@ -28,24 +29,12 @@ import com.example.elegantapp.ui.screens.HomePageScreen
 import com.example.elegantapp.ui.screens.ShopPageScreen
 import kotlinx.coroutines.launch
 
-enum class ElegantAppScreen() {
-    HomePage,
-    ProductPage,
-    ShopPage,
-    Cart,
-    BlogPage,
-    ContactUsPage
-}
-
 @Composable
 fun ElegantApp() {
 
     val viewModel: ElegantViewModel = viewModel()
     val navController: NavHostController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
-    val currentScreen = ElegantAppScreen.valueOf(
-        backStackEntry?.destination?.route ?: ElegantAppScreen.HomePage.name
-    )
 
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -89,24 +78,11 @@ fun ElegantApp() {
             ) { innerPadding ->
             val uiState by viewModel.uiState.collectAsState()
 
-            NavHost(
+            ElegantNavGraph(
                 navController = navController,
-                startDestination = ElegantAppScreen.HomePage.name,
+                onCloseDrawer = { onCloseDrawer() },
                 modifier = Modifier.padding(innerPadding)
-            ) {
-                composable(route = ElegantAppScreen.HomePage.name) {
-                    onCloseDrawer()
-                    HomePageScreen(navController = navController)
-                }
-                composable(route = ElegantAppScreen.ShopPage.name) {
-                    onCloseDrawer()
-                    ShopPageScreen(navController = navController, room = "Living room")
-                }
-                composable(route = ElegantAppScreen.ContactUsPage.name) {
-                    onCloseDrawer()
-                    ContactUsScreen(navController = navController)
-                }
-            }
+            )
 
         }
     }

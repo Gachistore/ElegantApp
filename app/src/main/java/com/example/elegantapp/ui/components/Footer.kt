@@ -31,8 +31,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.elegantapp.ElegantAppScreen
 import com.example.elegantapp.R
+import com.example.elegantapp.ui.screens.Screen
 import com.example.elegantapp.ui.theme.ElegantAppTheme
 import com.example.elegantapp.ui.theme.FooterColor
 import com.example.elegantapp.ui.theme.Inter
@@ -100,7 +100,7 @@ fun Footer(
                         color = Color.White,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { navController.navigate(ElegantAppScreen.HomePage.name) }
+                            .clickable { navController.navigate(Screen.HomePage.route) }
                     )
                     Text(
                         text = stringResource(id = R.string.shop),
@@ -111,7 +111,7 @@ fun Footer(
                         color = Color.White,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { navController.navigate("${ElegantAppScreen.ShopPage.name}/Living Room") }
+                            .clickable { navController.navigate(Screen.ShopPage.passRoom("Living room")) }
                     )
                     Text(
                         text = stringResource(id = R.string.product),
@@ -144,7 +144,7 @@ fun Footer(
                         color = Color.White,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { navController.navigate(ElegantAppScreen.ContactUsPage.name) }
+                            .clickable { navController.navigate(Screen.ContactUsPage.route) }
                     )
                 }
             }

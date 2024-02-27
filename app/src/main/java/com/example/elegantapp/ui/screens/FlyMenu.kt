@@ -22,7 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -48,7 +47,6 @@ import androidx.annotation.IntRange
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.rememberScrollableState
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
@@ -66,7 +64,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.elegantapp.ElegantAppScreen
 import com.example.elegantapp.ui.theme.ProductCardAddToCartButton
 
 @Composable
@@ -153,13 +150,13 @@ fun FlyMenu(
                         titleRes = R.string.home,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { navController.navigate(ElegantAppScreen.HomePage.name) }
+                            .clickable { navController.navigate(Screen.HomePage.route) }
                     )
                     FlyMenuTitle(
                         titleRes = R.string.shop,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { navController.navigate(ElegantAppScreen.ShopPage.name) }
+                            .clickable { navController.navigate(Screen.ShopPage.passRoom("Living room")) }
                     )
                     FlyMenuTitle(
                         titleRes = R.string.product,
@@ -171,7 +168,7 @@ fun FlyMenu(
                         titleRes = R.string.contact_us,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { navController.navigate(ElegantAppScreen.ContactUsPage.name) }
+                            .clickable { navController.navigate(Screen.ContactUsPage.route) }
 
                     )
                 }

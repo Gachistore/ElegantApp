@@ -1,5 +1,6 @@
 package com.example.elegantapp.ui.components.cards
 
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -67,7 +68,7 @@ fun HomePageProductCategoryCard(
                     text = R.string.shop_now,
                     fontSizeSp = 13,
                     color = LinkButtonWithArrowColor,
-                    onClick = { onClick }
+                    onClick = { onClick() }
                 )
 
             }
@@ -104,7 +105,7 @@ fun HomePageProductCategoryCard(
                             text = R.string.shop_now,
                             fontSizeSp = 13,
                             color = LinkButtonWithArrowColor,
-                            onClick = { onClick }
+                            onClick = { onClick() }
                         )
                     }
                 }
