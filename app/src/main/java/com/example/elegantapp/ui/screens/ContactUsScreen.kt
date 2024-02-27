@@ -142,7 +142,7 @@ private fun AboutUs(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier.background(Neutral02)
     ) {
         Image(
             painter = painterResource(image),
@@ -151,9 +151,7 @@ private fun AboutUs(
             modifier = Modifier.fillMaxWidth()
         )
         Column(
-            modifier = Modifier
-                .padding(vertical = 63.5.dp)
-                .background(Neutral02)
+            modifier = Modifier.padding(vertical = 40.dp)
         ) {
             Text(
                 text = "About Us",

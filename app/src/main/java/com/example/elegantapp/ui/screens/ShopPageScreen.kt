@@ -10,6 +10,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -23,9 +24,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -34,6 +37,7 @@ import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
@@ -55,6 +59,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -65,8 +71,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontVariation.width
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.text.font.FontWeight.Companion.W600
@@ -92,11 +100,19 @@ import com.example.elegantapp.ui.theme.Neutral07
 import com.example.elegantapp.ui.theme.Poppins
 import kotlin.math.ceil
 
+enum class SortBy(val type: String) {
+    Price("Price"),
+    Discount("Discount"),
+    Rating("Rating"),
+    Title("Title")
+}
+
 @Composable
 fun ShopPageScreen(
     navController: NavHostController,
-    room: String?
+    room: String
 ) {
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -110,9 +126,14 @@ fun ShopPageScreen(
                 .padding(start = 32.dp, end = 32.dp)
         )
         ProductsList(
-            room = room ?: "Some issues was caused",
+            room = room,
             productsList = ElegantLists.NewArrivals,
-            options = listOf("Big Cock", "Big dick"),
+            options = listOf(
+                SortBy.Price.type,
+                SortBy.Discount.type,
+                SortBy.Title.type,
+                SortBy.Rating.type
+            ),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 32.dp, end = 32.dp)
@@ -180,9 +201,7 @@ private fun ProductsList(
     options: List<String>,
     modifier: Modifier = Modifier
 ) {
-    var isVertical by rememberSaveable {
-        mutableStateOf(true)
-    }
+    var isVertical by rememberSaveable { mutableStateOf(true) }
     var expanded by remember { mutableStateOf(false) }
     var selectedOptionText by remember { mutableStateOf("Sort by") }
     var visibleState = remember {
@@ -272,7 +291,9 @@ private fun ProductsList(
                     onExpandedChange = { expanded = !expanded }
                 ) {
                     Row(
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .menuAnchor()
                     ) {
                         Text(
                             text = selectedOptionText,
@@ -292,7 +313,8 @@ private fun ProductsList(
                     }
                     ExposedDropdownMenu(
                         expanded = expanded,
-                        onDismissRequest = { expanded = false }
+                        onDismissRequest = { expanded = false },
+                        modifier = Modifier.width(110.dp)
                     ) {
                         options.forEach { selectionOption ->
                             DropdownMenuItem(
@@ -306,8 +328,14 @@ private fun ProductsList(
                                         color = Black900
                                     )
                                 },
-                                onClick = { selectedOptionText = selectionOption },
-                                contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
+                                onClick = {
+                                    selectedOptionText = selectionOption
+                                    expanded = false
+                                },
+                                contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
+                                modifier = Modifier
+                                    .topBorder(1.dp, Neutral04)
+                                    .bottomBorder(1.dp, Neutral04)
                             )
                         }
                     }
@@ -339,13 +367,21 @@ private fun ProductsList(
                     LazyVerticalGrid(
                         columns = GridCells.Adaptive(152.dp),
                         modifier = Modifier
-                            .padding(vertical = 32.dp)
-                            .height((281 * ceil(productsList.size / 2.0) + (ceil(productsList.size / 2.0) - 1) * 16).dp),
+                            .padding(bottom = 32.dp, top = 16.dp)
+                            .heightIn(max = ((281 * productsList.size) + 16 * (productsList.size - 1)).dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalArrangement = Arrangement.spacedBy(16.dp),
                         userScrollEnabled = false
                     ) {
-                        itemsIndexed(productsList) { index, product ->
+                        itemsIndexed(
+                            when(selectedOptionText) {
+                                SortBy.Price.type -> productsList.sortedBy { it.price }
+                                SortBy.Rating.type -> productsList.sortedByDescending { it.rating }
+                                SortBy.Title.type -> productsList.sortedBy { it.title }
+                                SortBy.Discount.type -> productsList.sortedByDescending { it.discount }
+                                else -> productsList
+                            }
+                        ) { index, product ->
                             ProductCardVertical(
                                 data = product,
                                 imageSizeDp = 203,
@@ -362,7 +398,9 @@ private fun ProductsList(
                                     )
                             )
                         }
-                        visibleState = MutableTransitionState(false).apply { targetState = true }
+                        visibleState = MutableTransitionState(false).apply {
+                            targetState = false
+                        }
                     }
                 } else {
                     LazyColumn(
@@ -372,7 +410,15 @@ private fun ProductsList(
                         verticalArrangement = Arrangement.spacedBy(16.dp),
                         userScrollEnabled = false
                     ) {
-                        itemsIndexed(productsList) { index, product ->
+                        itemsIndexed(
+                            when(selectedOptionText) {
+                                SortBy.Price.type -> productsList.sortedBy { it.price }
+                                SortBy.Rating.type -> productsList.sortedByDescending { it.rating }
+                                SortBy.Title.type -> productsList.sortedBy { it.title }
+                                SortBy.Discount.type -> productsList.sortedByDescending { it.discount }
+                                else -> productsList
+                            }
+                        ) { index, product ->
                             ProductCardHorizontal(
                                 data = product,
                                 modifier = Modifier
@@ -425,6 +471,6 @@ private fun ProductsList(
 private fun ShopPageScreenPreview() {
     val navController: NavHostController = rememberNavController()
     ElegantAppTheme {
-        ShopPageScreen(navController = navController ,"Living room")
+        ShopPageScreen(navController = navController, "Living room")
     }
 }

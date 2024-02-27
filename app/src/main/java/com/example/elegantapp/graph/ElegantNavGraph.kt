@@ -36,7 +36,6 @@ fun ElegantNavGraph(
             })
         ) {
             onCloseDrawer()
-            Log.d("MYLog", it.arguments?.getString(ROOM_KEY).toString())
             ShopPageScreen(navController = navController, room = it.arguments?.getString(ROOM_KEY).toString())
         }
         composable(route = Screen.ContactUsPage.route) {
